@@ -1,7 +1,7 @@
-package com.software.architecture.homework2.models.ExceptionConvetModel;
+package com.example.architecture.homework2_withoutshiro.models.ExceptionConvetModel;
 
 
-import com.software.architecture.homework2.models.exceptionModels.BaseException;
+import com.example.architecture.homework2_withoutshiro.models.exceptionModels.BaseException;
 
 public class ExceptionEntity {
     public String message;

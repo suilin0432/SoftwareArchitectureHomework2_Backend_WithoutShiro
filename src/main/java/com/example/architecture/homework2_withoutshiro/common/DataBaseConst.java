@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.common;
+package com.example.architecture.homework2_withoutshiro.common;
 
 public class DataBaseConst {
     public static final String User_DATABASE_NAME = "users";

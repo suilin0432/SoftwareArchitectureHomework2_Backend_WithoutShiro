@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.models.exceptionModels;
+package com.example.architecture.homework2_withoutshiro.models.exceptionModels;
 
 public class EmailException extends Throwable {
     public String message;

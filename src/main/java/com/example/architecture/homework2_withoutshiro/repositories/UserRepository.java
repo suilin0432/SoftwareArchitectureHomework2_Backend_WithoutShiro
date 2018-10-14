@@ -1,6 +1,6 @@
-package com.software.architecture.homework2.repositories;
+package com.example.architecture.homework2_withoutshiro.repositories;
 
-import com.software.architecture.homework2.models.implementModels.User;
+import com.example.architecture.homework2_withoutshiro.models.implementModels.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

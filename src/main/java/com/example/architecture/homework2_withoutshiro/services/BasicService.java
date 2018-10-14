@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.services;
+package com.example.architecture.homework2_withoutshiro.services;
 
 import org.springframework.stereotype.Service;
 

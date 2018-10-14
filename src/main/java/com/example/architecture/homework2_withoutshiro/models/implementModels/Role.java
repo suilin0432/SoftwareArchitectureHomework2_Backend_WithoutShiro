@@ -1,15 +1,16 @@
-package com.software.architecture.homework2.models.implementModels;
+package com.example.architecture.homework2_withoutshiro.models.implementModels;
 
-import com.software.architecture.homework2.common.DataBaseConst;
-import com.software.architecture.homework2.models.BaseModel;
+
+import com.example.architecture.homework2_withoutshiro.common.DataBaseConst;
+import com.example.architecture.homework2_withoutshiro.models.BaseModel;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.redis.core.index.Indexed;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Document(collection = DataBaseConst.Role_DATABASE_NAME)
-public class Role extends BaseModel{
+public class Role extends BaseModel {
 
     @Indexed
     @NotNull

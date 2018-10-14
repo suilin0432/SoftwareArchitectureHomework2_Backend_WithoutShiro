@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.models;
+package com.example.architecture.homework2_withoutshiro.models;
 
 
 import org.springframework.data.annotation.Id;

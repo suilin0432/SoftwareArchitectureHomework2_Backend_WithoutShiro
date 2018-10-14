@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.common.swagger;
+package com.example.architecture.homework2_withoutshiro.common.swagger;
 
 
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.services.env;
+package com.example.architecture.homework2_withoutshiro.services.env;
 
 /*
 CORS 解决跨域请求 与CORSFilter二者存在一个就好

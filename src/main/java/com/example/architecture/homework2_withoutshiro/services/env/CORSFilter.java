@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.services.env;//package com.volunteer.commonweal.services.env;
+package com.example.architecture.homework2_withoutshiro.services.env;//package com.volunteer.commonweal.services.env;
 //
 //import org.springframework.stereotype.Component;
 //import org.springframework.web.filter.OncePerRequestFilter;

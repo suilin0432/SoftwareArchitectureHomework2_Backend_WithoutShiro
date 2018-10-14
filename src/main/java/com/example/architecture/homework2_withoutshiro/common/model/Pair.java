@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.common.model;
+package com.example.architecture.homework2_withoutshiro.common.model;
 
 public class Pair<K, V> {
     private K key;

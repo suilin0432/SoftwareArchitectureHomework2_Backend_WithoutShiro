@@ -1,12 +1,12 @@
-package com.software.architecture.homework2.controllers.exceptionsHandler;
+package com.example.architecture.homework2_withoutshiro.controllers.exceptionsHandler;
 
 
-import com.software.architecture.homework2.models.ExceptionConvetModel.ExceptionEntity;
-import com.software.architecture.homework2.models.exceptionModels.AuthException;
-import com.software.architecture.homework2.models.exceptionModels.BaseException;
-import com.software.architecture.homework2.models.exceptionModels.EmailException;
-import com.software.architecture.homework2.models.exceptionModels.EncryptException;
-import com.software.architecture.homework2.services.env.Config;
+import com.example.architecture.homework2_withoutshiro.models.ExceptionConvetModel.ExceptionEntity;
+import com.example.architecture.homework2_withoutshiro.models.exceptionModels.AuthException;
+import com.example.architecture.homework2_withoutshiro.models.exceptionModels.BaseException;
+import com.example.architecture.homework2_withoutshiro.models.exceptionModels.EmailException;
+import com.example.architecture.homework2_withoutshiro.models.exceptionModels.EncryptException;
+import com.example.architecture.homework2_withoutshiro.services.env.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

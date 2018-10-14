@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.models;
+package com.example.architecture.homework2_withoutshiro.models;
 
 import java.util.Arrays;
 import java.util.List;

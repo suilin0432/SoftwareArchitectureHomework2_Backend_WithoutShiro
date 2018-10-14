@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.common;
+package com.example.architecture.homework2_withoutshiro.common;
 //对象检验类
 public class Objects {
     public static final boolean isNull(Object object){return object == null;}

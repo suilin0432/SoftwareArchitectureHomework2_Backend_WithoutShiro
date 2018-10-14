@@ -1,9 +1,9 @@
-package com.software.architecture.homework2.controllers;
+package com.example.architecture.homework2_withoutshiro.controllers;
 
-import com.software.architecture.homework2.models.requestModels.Data;
-import com.software.architecture.homework2.repositories.UserRepository;
-import com.software.architecture.homework2.services.BasicService;
-import com.software.architecture.homework2.services.env.Config;
+import com.example.architecture.homework2_withoutshiro.models.requestModels.Data;
+import com.example.architecture.homework2_withoutshiro.repositories.UserRepository;
+import com.example.architecture.homework2_withoutshiro.services.BasicService;
+import com.example.architecture.homework2_withoutshiro.services.env.Config;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

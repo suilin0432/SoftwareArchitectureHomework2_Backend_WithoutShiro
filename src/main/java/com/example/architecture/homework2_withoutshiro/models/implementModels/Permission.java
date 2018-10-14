@@ -1,8 +1,8 @@
-package com.software.architecture.homework2.models.implementModels;
+package com.example.architecture.homework2_withoutshiro.models.implementModels;
 
-import com.software.architecture.homework2.common.DataBaseConst;
-import com.software.architecture.homework2.models.BaseModel;
-import com.software.architecture.homework2.models.ResourceType;
+import com.example.architecture.homework2_withoutshiro.common.DataBaseConst;
+import com.example.architecture.homework2_withoutshiro.models.BaseModel;
+import com.example.architecture.homework2_withoutshiro.models.ResourceType;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;

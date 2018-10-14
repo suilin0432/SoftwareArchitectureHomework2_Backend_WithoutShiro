@@ -1,4 +1,4 @@
-package com.software.architecture.homework2;
+package com.example.architecture.homework2_withoutshiro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

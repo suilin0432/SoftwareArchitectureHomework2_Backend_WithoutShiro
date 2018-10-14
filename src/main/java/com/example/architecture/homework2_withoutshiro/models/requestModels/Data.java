@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.models.requestModels;
+package com.example.architecture.homework2_withoutshiro.models.requestModels;
 
 public class Data {
     public String username;

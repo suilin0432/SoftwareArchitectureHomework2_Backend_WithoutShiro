@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.services.env;
+package com.example.architecture.homework2_withoutshiro.services.env;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

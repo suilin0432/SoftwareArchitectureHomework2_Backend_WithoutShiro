@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.services.env;
+package com.example.architecture.homework2_withoutshiro.services.env;
 
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Autowired;

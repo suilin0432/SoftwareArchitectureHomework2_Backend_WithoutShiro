@@ -1,7 +1,7 @@
-package com.software.architecture.homework2.common;
+package com.example.architecture.homework2_withoutshiro.common;
 // 加密类
 
-import com.software.architecture.homework2.models.exceptionModels.EncryptException;
+import com.example.architecture.homework2_withoutshiro.models.exceptionModels.EncryptException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

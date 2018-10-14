@@ -1,4 +1,4 @@
-package com.software.architecture.homework2.controllers;
+package com.example.architecture.homework2_withoutshiro.controllers;
 
 public class FunctionController {
 }
