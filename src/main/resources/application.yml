@@ -8,7 +8,7 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: commonweal
+      database: homework2_withoutshiro
   redis:
       database: 0
       host: localhost
