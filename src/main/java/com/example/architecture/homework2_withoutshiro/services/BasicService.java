@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BasicService {
-    UserRepository userRepository;
-    Config config;
+    private UserRepository userRepository;
+    private Config config;
     @Autowired
     public BasicService(UserRepository userRepository,
                         Config config){

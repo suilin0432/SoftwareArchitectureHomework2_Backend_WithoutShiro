@@ -46,8 +46,12 @@ hive:
     1013: "parameter duplicate" #参数重复
     1014: "password format error" #密码格式不正确
     1015: "confirm error" #确认密码和密码不同
-    1016: "username not found" #用户名对应用户不存在
+    1016: "user not found" #用户不存在
     1017: "wrong password" #密码不正确
+    1018: "not login" #没有登录
+    1019: "permission not found" #权限不存爱
+    10110: "commodity has exist" #商品名已经存在
+    10111: "commodity not found" #商品不存在
     102: "authorization error" #权限错误
 
 

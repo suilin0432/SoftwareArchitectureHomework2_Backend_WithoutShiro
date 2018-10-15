@@ -81,10 +81,10 @@ public class BasicController {
         List<String> roleIdList = Arrays.asList(roles);
         roleList = roleRepository.findById(roleIdList).collect(Collectors.toList());
         user.setRoleList(roleList);
-
-        session.setAttribute(UIConst.SESSION_USER_ID, user.getId());
-
         User saveUser = userRepository.save(user);
+        session.setAttribute(UIConst.SESSION_USER_ID, saveUser.getId());
+
+
         return new ResponseEntity(saveUser, HttpStatus.OK);
     }
 

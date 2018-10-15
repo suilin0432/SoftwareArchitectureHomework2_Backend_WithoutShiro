@@ -1,5 +1,7 @@
 package com.example.architecture.homework2_withoutshiro.repositories;
 
+import com.example.architecture.homework2_withoutshiro.models.OperationType;
+import com.example.architecture.homework2_withoutshiro.models.ResourceType;
 import com.example.architecture.homework2_withoutshiro.models.implementModels.Permission;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -12,4 +14,5 @@ public interface PermissionRepository extends MongoRepository<Permission, String
     Stream<Permission> findByName(Collection<String> nameList);
     Optional<Permission> findOneById(String id);
     Stream<Permission> findById(Collection<String> idList);
+    Optional<Permission> findOneByOperationTypeAndResourceType(OperationType operationType, ResourceType resourceType);
 }
