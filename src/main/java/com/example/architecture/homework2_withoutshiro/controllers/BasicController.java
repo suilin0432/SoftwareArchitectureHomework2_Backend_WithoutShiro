@@ -79,11 +79,17 @@ public class BasicController {
         List<Role> roleList = new ArrayList<Role>();
         String[] roles = managementCode.split(";");
         List<String> roleIdList = Arrays.asList(roles);
-        roleList = roleRepository.findById(roleIdList).collect(Collectors.toList());
+        for(String name:roleIdList){
+            Optional<Role> role = roleRepository.findOneByName(name);
+            if(role.isPresent() && !roleList.contains(role.get())){
+                roleList.add(role.get());
+            }
+        }
         user.setRoleList(roleList);
+//        System.out.println(roleList.size());
+//        System.out.println(roleRepository.findOneByName(roleIdList.get(0)).isPresent());
         User saveUser = userRepository.save(user);
         session.setAttribute(UIConst.SESSION_USER_ID, saveUser.getId());
-
 
         return new ResponseEntity(saveUser, HttpStatus.OK);
     }
@@ -119,6 +125,13 @@ public class BasicController {
     public ResponseEntity userSignOut(HttpSession session){
         session.invalidate();
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "用户登出", notes = "无参数传入,当前用户登出")
+    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    public ResponseEntity userInfo(HttpSession session) throws AuthException {
+        User user = authService.getUserFromSession(session);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
 }

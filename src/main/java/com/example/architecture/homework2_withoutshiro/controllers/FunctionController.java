@@ -4,14 +4,12 @@ import com.example.architecture.homework2_withoutshiro.common.Objects;
 import com.example.architecture.homework2_withoutshiro.models.OperationType;
 import com.example.architecture.homework2_withoutshiro.models.ResourceType;
 import com.example.architecture.homework2_withoutshiro.models.exceptionModels.AuthException;
-import com.example.architecture.homework2_withoutshiro.models.implementModels.Car;
-import com.example.architecture.homework2_withoutshiro.models.implementModels.Commodity;
-import com.example.architecture.homework2_withoutshiro.models.implementModels.Permission;
-import com.example.architecture.homework2_withoutshiro.models.implementModels.User;
+import com.example.architecture.homework2_withoutshiro.models.implementModels.*;
 import com.example.architecture.homework2_withoutshiro.models.requestModels.ObjectData;
 import com.example.architecture.homework2_withoutshiro.repositories.CarRepository;
 import com.example.architecture.homework2_withoutshiro.repositories.CommodityRepository;
 import com.example.architecture.homework2_withoutshiro.repositories.PermissionRepository;
+import com.example.architecture.homework2_withoutshiro.repositories.UserRepository;
 import com.example.architecture.homework2_withoutshiro.services.AuthService;
 import com.example.architecture.homework2_withoutshiro.services.env.Config;
 import io.swagger.annotations.Api;
@@ -34,18 +32,21 @@ public class FunctionController {
     private CarRepository carRepository;
     private CommodityRepository commodityRepository;
     private PermissionRepository permissionRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public FunctionController(Config config,
                               AuthService authService,
                               CarRepository carRepository,
                               CommodityRepository commodityRepository,
-                              PermissionRepository permissionRepository){
+                              PermissionRepository permissionRepository,
+                              UserRepository userRepository){
         this.config = config;
         this.authService = authService;
         this.carRepository = carRepository;
         this.commodityRepository = commodityRepository;
         this.permissionRepository = permissionRepository;
+        this.userRepository = userRepository;
     }
 
     @ApiOperation(value = "添加Commodity", notes = "")
@@ -67,12 +68,12 @@ public class FunctionController {
             throw new AuthException(102, config.getExceptionsMap().get(102));
         }
         Optional<Commodity> commodityFound = commodityRepository.findOneByName(name);
-        if(!commodityFound.isPresent()){
+        if(commodityFound.isPresent()){
             throw new AuthException(10110, config.getExceptionsMap().get(10110));
         }
         Commodity commodity = new Commodity();
         commodity.setName(name);
-        commodity.setName(description);
+        commodity.setDescription(description);
         commodity.setPrice(price);
         return new ResponseEntity(commodityRepository.save(commodity), HttpStatus.OK);
     }
@@ -123,13 +124,9 @@ public class FunctionController {
         if(!commodityModityFound.isPresent()){
             throw new AuthException(10111, config.getExceptionsMap().get(10111));
         }
-        Optional<Commodity> commodityFound = commodityRepository.findOneByName(name);
-        if(!commodityFound.isPresent()){
-            throw new AuthException(10110, config.getExceptionsMap().get(10110));
-        }
         Commodity commodity = commodityModityFound.get();
         commodity.setName(name);
-        commodity.setName(description);
+        commodity.setDescription(description);
         commodity.setPrice(price);
         return new ResponseEntity(commodityRepository.save(commodity), HttpStatus.OK);
     }
@@ -169,12 +166,12 @@ public class FunctionController {
             throw new AuthException(102, config.getExceptionsMap().get(102));
         }
         Optional<Car> carFound = carRepository.findOneByName(name);
-        if(!carFound.isPresent()){
+        if(carFound.isPresent()){
             throw new AuthException(10110, config.getExceptionsMap().get(10110));
         }
         Car car = new Car();
         car.setName(name);
-        car.setName(description);
+        car.setDescription(description);
         car.setPrice(price);
         return new ResponseEntity(carRepository.save(car), HttpStatus.OK);
     }
@@ -225,13 +222,9 @@ public class FunctionController {
         if(!caryModityFound.isPresent()){
             throw new AuthException(10111, config.getExceptionsMap().get(10111));
         }
-        Optional<Car> carFound = carRepository.findOneByName(name);
-        if(!carFound.isPresent()){
-            throw new AuthException(10110, config.getExceptionsMap().get(10110));
-        }
-        Car car = carFound.get();
+        Car car = caryModityFound.get();
         car.setName(name);
-        car.setName(description);
+        car.setDescription(description);
         car.setPrice(price);
         return new ResponseEntity(carRepository.save(car), HttpStatus.OK);
     }
@@ -248,7 +241,56 @@ public class FunctionController {
         if(!authService.userHasAuth(user, permission)){
             throw new AuthException(102, config.getExceptionsMap().get(102));
         }
+        System.out.println(4);
         List<Car> carList = carRepository.findAll();
         return new ResponseEntity(carList, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "删除User", notes = "不能删除自己和含有admin的账户")
+    @RequestMapping(value = "/user/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteUser(@PathVariable String id, HttpSession session) throws AuthException {
+        if(!Objects.isNotNull(id)){
+            throw new AuthException(1011, config.getExceptionsMap().get(1011));
+        }
+        User user = authService.getUserFromSession(session);
+        Optional<Permission> permissionFound = permissionRepository.findOneByOperationTypeAndResourceType(OperationType.DELETE, ResourceType.USER);
+        if(!permissionFound.isPresent()){
+            throw new AuthException(1019, config.getExceptionsMap().get(1019));
+        }
+        Permission permission = permissionFound.get();
+        if(!authService.userHasAuth(user, permission)){
+            throw new AuthException(102, config.getExceptionsMap().get(102));
+        }
+        Optional<User> userFound = userRepository.findOneById(id);
+        if(!userFound.isPresent()){
+            throw new AuthException(10110, config.getExceptionsMap().get(10110));
+        }
+        if(userFound.get().getId().equals(user.getId())){
+            throw new AuthException(10112, config.getExceptionsMap().get(10112));
+        }
+        for(Role role:userFound.get().getRoleList()){
+            if(role.getName().equals("admin")){
+                throw new AuthException(10113, config.getExceptionsMap().get(10113));
+            }
+        }
+        userRepository.delete(userFound.get());
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "获取所有User列表", notes = "")
+    @RequestMapping(value = "/user/find", method = RequestMethod.GET)
+    public ResponseEntity findUser(HttpSession session) throws AuthException {
+        User user = authService.getUserFromSession(session);
+        Optional<Permission> permissionFound = permissionRepository.findOneByOperationTypeAndResourceType(OperationType.SEARCH, ResourceType.USER);
+        if(!permissionFound.isPresent()){
+            throw new AuthException(1019, config.getExceptionsMap().get(1019));
+        }
+        Permission permission = permissionFound.get();
+        if(!authService.userHasAuth(user, permission)){
+            throw new AuthException(102, config.getExceptionsMap().get(102));
+        }
+        System.out.println(4);
+        List<User> userList = userRepository.findAll();
+        return new ResponseEntity(userList, HttpStatus.OK);
     }
 }

@@ -46,9 +46,17 @@ public class AuthService {
         for (Role role:roleList){
             permissionList.addAll(role.getPermissions());
         }
-        return permissionList.contains(permission); //返回是否有权限
+        return AuthContains(permissionList, permission); //返回是否有权限
     }
 
+    private boolean AuthContains(List<Permission> permissionList, Permission permission){
+        for(Permission permission1:permissionList){
+            if(permission1.getId().equals(permission.getId())){
+                return true;
+            }
+        }
+        return false;
+    }
     public Optional<String> getUserIdFromSession(HttpSession session){
         return Optional.ofNullable((String)session.getAttribute(UIConst.SESSION_USER_ID));
     }
