@@ -4,13 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum ResourceType {
-        SU,
-        OWNER,
-        ADMIN,
-        CLEANER,
-        NEWCOMER;
+        USER,
+        COMMODITY,
+        CAR;
 
-        private static List<ResourceType> RESOURCETYPE_ORDER = Arrays.asList(SU, OWNER, ADMIN, CLEANER, NEWCOMER);
+        private static List<ResourceType> RESOURCETYPE_ORDER = Arrays.asList(USER, COMMODITY, CAR);
 
         public static ResourceType valueOfStr(String str) {
             return ResourceType.valueOf(str.toUpperCase());

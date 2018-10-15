@@ -1,6 +1,6 @@
 package com.example.architecture.homework2_withoutshiro.models.implementModels;
 
-import com.example.architecture.homework2_withoutshiro.common.DataBaseConst;
+import com.example.architecture.homework2_withoutshiro.constants.DataBaseConst;
 import com.example.architecture.homework2_withoutshiro.common.EncryptionUtils;
 import com.example.architecture.homework2_withoutshiro.models.BaseModel;
 import com.example.architecture.homework2_withoutshiro.models.exceptionModels.EncryptException;
@@ -20,16 +20,11 @@ public class User extends BaseModel {
     @NotNull
     private String password;
 
-    private String salt;
-
     private List<Role> roleList;
 
 
     public void setPassword(String password) throws EncryptException {
         this.password = EncryptionUtils.userPasswordEncrypt("SHA1", password);
-    }
-    public String getPassword() {
-        return password;
     }
     public boolean isRightPassword(String password) throws EncryptException {
         return this.password.equals(EncryptionUtils.userPasswordEncrypt("SHA1", password));
@@ -50,15 +45,4 @@ public class User extends BaseModel {
         this.roleList = roleList;
     }
 
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getCredentialsSalt(){
-        return this.username + this.salt;
-    }
 }

@@ -1,7 +1,7 @@
 package com.example.architecture.homework2_withoutshiro.models.implementModels;
 
 
-import com.example.architecture.homework2_withoutshiro.common.DataBaseConst;
+import com.example.architecture.homework2_withoutshiro.constants.DataBaseConst;
 import com.example.architecture.homework2_withoutshiro.models.BaseModel;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,11 +18,9 @@ public class Role extends BaseModel {
 
     private String description;
 
-    private Boolean available;
-
     private List<Permission> permissionList;
 
-    private List<User> userList;
+//    private List<User> userList;
 
     public String getRole() {
         return role;
@@ -40,13 +38,6 @@ public class Role extends BaseModel {
         this.description = description;
     }
 
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
-    }
 
     public List<Permission> getPermissions() {
         return permissionList;
@@ -56,11 +47,11 @@ public class Role extends BaseModel {
         this.permissionList = permissionList;
     }
 
-    public List<User> getUserInfos() {
-        return userList;
-    }
-
-    public void setUserInfos(List<User> userList) {
-        this.userList = userList;
-    }
+//    public List<User> getUserInfos() {
+//        return userList;
+//    }
+//
+//    public void setUserInfos(List<User> userList) {
+//        this.userList = userList;
+//    }
 }
