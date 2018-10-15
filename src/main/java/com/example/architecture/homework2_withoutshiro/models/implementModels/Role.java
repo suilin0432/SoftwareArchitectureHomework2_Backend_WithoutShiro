@@ -14,7 +14,7 @@ public class Role extends BaseModel {
 
     @Indexed
     @NotNull
-    private String role;
+    private String name;
 
     private String description;
 
@@ -22,12 +22,12 @@ public class Role extends BaseModel {
 
 //    private List<User> userList;
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

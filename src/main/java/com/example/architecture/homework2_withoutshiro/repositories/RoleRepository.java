@@ -9,8 +9,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public interface RoleRepository extends MongoRepository<Role, String> {
-    Optional<Role> findOneByRole(String role);
-    Stream<Role> findByRole(Collection<String> roleList);
+    Optional<Role> findOneByName(String name);
+    Stream<Role> findByName(Collection<String> nameList);
     Optional<Role> findOneById(String id);
     Stream<Role> findById(Collection<String> idList);
 }
