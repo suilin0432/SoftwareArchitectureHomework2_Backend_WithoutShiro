@@ -18,15 +18,15 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.volunteer.commonweal.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.architecture.homework2_withoutshiro.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     public ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("筑梦者项目后端代码文档")
-                .description("暂无描述")
+                .title("软件系统分析与设计")
+                .description("第三次作业")
                 .contact("401569798@qq.com")
                 .termsOfServiceUrl("")
                 .version("1.0")

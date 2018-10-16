@@ -1,6 +1,7 @@
 package com.example.architecture.homework2_withoutshiro.controllers;
 
 import com.example.architecture.homework2_withoutshiro.common.Objects;
+import com.example.architecture.homework2_withoutshiro.common.UserLoginListener;
 import com.example.architecture.homework2_withoutshiro.constants.UIConst;
 import com.example.architecture.homework2_withoutshiro.models.exceptionModels.AuthException;
 import com.example.architecture.homework2_withoutshiro.models.exceptionModels.EncryptException;
@@ -38,6 +39,7 @@ public class BasicController {
     AuthService authService;
     UserRepository userRepository;
     RoleRepository roleRepository;
+    UserLoginListener userLoginListener;
 
     @Autowired
     public BasicController(Config config,
@@ -50,6 +52,7 @@ public class BasicController {
         this.authService = authService;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.userLoginListener = UserLoginListener.getUserLoginListener();
     }
 
     //注册操作不涉及到权限问题
@@ -90,7 +93,7 @@ public class BasicController {
 //        System.out.println(roleRepository.findOneByName(roleIdList.get(0)).isPresent());
         User saveUser = userRepository.save(user);
         session.setAttribute(UIConst.SESSION_USER_ID, saveUser.getId());
-
+        userLoginListener.addUserOnline();
         return new ResponseEntity(saveUser, HttpStatus.OK);
     }
 
@@ -118,20 +121,28 @@ public class BasicController {
             throw new AuthException(1017, config.getExceptionsMap().get(1017));
         }
         session.setAttribute(UIConst.SESSION_USER_ID, user.getId());
+        userLoginListener.addUserOnline();
         return new ResponseEntity(user, HttpStatus.OK);
     }
     @ApiOperation(value = "用户登出", notes = "无参数传入,当前用户登出")
     @RequestMapping(value = "/signOut",method = RequestMethod.PUT)
     public ResponseEntity userSignOut(HttpSession session){
         session.invalidate();
+        userLoginListener.removeUserOnline();
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "用户登出", notes = "无参数传入,当前用户登出")
+    @ApiOperation(value = "用户信息", notes = "")
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public ResponseEntity userInfo(HttpSession session) throws AuthException {
         User user = authService.getUserFromSession(session);
         return new ResponseEntity(user, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "获取登陆人数", notes = "")
+    @RequestMapping(value = "/userCount", method = RequestMethod.GET)
+    public ResponseEntity userCount(){
+        return new ResponseEntity(userLoginListener.getUserOnline(), HttpStatus.OK);
     }
 
 }
