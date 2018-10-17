@@ -14,12 +14,4 @@ public enum OperationType {
     public static OperationType valueOfStr(String str) {
         return OperationType.valueOf(str.toUpperCase());
     }
-
-    public boolean isSuperiorTo(OperationType operationType) {
-        System.out.println(RESOURCETYPE_ORDER.indexOf(this)+"  "+RESOURCETYPE_ORDER.indexOf(operationType));
-        if (RESOURCETYPE_ORDER.indexOf(this) < RESOURCETYPE_ORDER.indexOf(operationType)) {
-            return true;
-        }
-        return false;
-    }
 }

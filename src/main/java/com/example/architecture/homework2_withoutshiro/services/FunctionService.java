@@ -20,7 +20,4 @@ public class FunctionService {
         this.config = config;
         this.commodityRepository = commodityRepository;
     }
-
-
-
 }

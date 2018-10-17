@@ -10,6 +10,8 @@ import com.example.architecture.homework2_withoutshiro.repositories.CarRepositor
 import com.example.architecture.homework2_withoutshiro.repositories.CommodityRepository;
 import com.example.architecture.homework2_withoutshiro.repositories.PermissionRepository;
 import com.example.architecture.homework2_withoutshiro.repositories.RoleRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,6 +32,7 @@ import java.util.Optional;
 @EnableScheduling
 @EnableSwagger2
 public class Application {
+
     private static PermissionRepository permissionRepository;
     private static RoleRepository roleRepository;
     private static CarRepository carRepository;
@@ -89,7 +92,7 @@ public class Application {
             //coder: 除了DELETE的所有权限 0,1,3,4,5,7,9,10,11
             //basicuser1: CAR的SEARCH权限和COMMODITY的SEARCH权限和CAR的UPDATE权限 3,5,7
             //basicuser2: CAR的SEARCH权限和COMMODITY的SEARCH权限和COMMODITY的UPDATE权限3,7,2
-            //vip: CAR、COMMODITY、User的SEARCH权限, COMMODITY和CAR 的INSERT和UPDATE权限，COMMODITY的删除权限 0-5,7,9,11
+            //vip: CAR、COMMODITY、ROLE的SEARCH权限和UPDATE权限, COMMODITY和CAR 的INSERT权限，COMMODITY的删除权限 0-5,7,9,11
             Role admin = new Role();
             Role coder = new Role();
             Role basicuser1 = new Role();
@@ -211,4 +214,5 @@ public class Application {
             commodityRepository.save(commodity5);
         }
     }
+
 }

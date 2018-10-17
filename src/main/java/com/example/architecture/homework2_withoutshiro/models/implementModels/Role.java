@@ -20,7 +20,6 @@ public class Role extends BaseModel {
 
     private List<Permission> permissionList;
 
-//    private List<User> userList;
 
     public String getName() {
         return name;
@@ -47,11 +46,4 @@ public class Role extends BaseModel {
         this.permissionList = permissionList;
     }
 
-//    public List<User> getUserInfos() {
-//        return userList;
-//    }
-//
-//    public void setUserInfos(List<User> userList) {
-//        this.userList = userList;
-//    }
 }
