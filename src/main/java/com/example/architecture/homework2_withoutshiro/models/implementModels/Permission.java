@@ -14,9 +14,9 @@ public class Permission extends BaseModel {
     @Indexed
     @NotNull
     private String name;
-
+    @NotNull
     private ResourceType resourceType;
-
+    @NotNull
     private OperationType operationType;
 
     public String getName() {

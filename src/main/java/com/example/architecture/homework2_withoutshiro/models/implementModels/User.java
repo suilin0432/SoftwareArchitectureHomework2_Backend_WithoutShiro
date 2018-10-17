@@ -14,7 +14,7 @@ import java.util.List;
 @Document(collection = DataBaseConst.User_DATABASE_NAME)
 public class User extends BaseModel {
 
-    @Indexed
+    @Indexed(unique = true)
     @NotNull
     private String username;
     @NotNull

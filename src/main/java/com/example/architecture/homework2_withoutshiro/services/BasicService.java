@@ -16,7 +16,7 @@ public class BasicService {
         this.config = config;
     }
     public boolean isRightUsername(String username){
-        return (username.length()>=6 && username.length()<=16 && !userRepository.findOneById(username).isPresent());
+        return (username.length()>=6 && username.length()<=16 && !userRepository.findOneByUsername(username).isPresent());
     }
     public boolean isRightPassword(String password){
         return password.length()>=6 && password.length()<=16;

@@ -9,12 +9,12 @@ import javax.validation.constraints.NotNull;
 
 @Document(collection = DataBaseConst.Car_DATABASE_NAME)
 public class Car extends BaseModel {
-    @Indexed
+    @Indexed(unique = true)
     @NotNull
     private String name;
 
     private String description;
-
+    @NotNull
     private Long price;
 
     public Long getPrice() {

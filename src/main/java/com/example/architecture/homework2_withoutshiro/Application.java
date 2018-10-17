@@ -48,7 +48,7 @@ public class Application {
         this.carRepository = carRepository;
         this.commodityRepository = commodityRepository;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(Application.class, args);
         init();//init 初始环境
     }
@@ -59,7 +59,7 @@ public class Application {
         permission.setName(name);
         return permission;
     }
-    private static void init() {
+    private static void init() throws InterruptedException {
         Optional<Permission> permissionFound = permissionRepository.findOneByName("COMMODITY_INSERT");
         if(!permissionFound.isPresent()){
             //权限包括 COMMODITY、CAR、ROLE的四种权限
@@ -75,18 +75,18 @@ public class Application {
             Permission permission9 = setPermission("USER_UPDATE", ResourceType.USER, OperationType.UPDATE);
             Permission permission10 = setPermission("USER_INSERT", ResourceType.USER, OperationType.INSERT);
             Permission permission11 = setPermission("USER_SEARCH", ResourceType.USER, OperationType.SEARCH);
-            permissionRepository.save(permission0);
-            permissionRepository.save(permission1);
-            permissionRepository.save(permission2);
-            permissionRepository.save(permission3);
-            permissionRepository.save(permission4);
-            permissionRepository.save(permission5);
-            permissionRepository.save(permission6);
-            permissionRepository.save(permission7);
-            permissionRepository.save(permission8);
-            permissionRepository.save(permission9);
-            permissionRepository.save(permission10);
-            permissionRepository.save(permission11);
+            permission0 = permissionRepository.save(permission0);
+            permission1 = permissionRepository.save(permission1);
+            permission2 = permissionRepository.save(permission2);
+            permission3 = permissionRepository.save(permission3);
+            permission4 = permissionRepository.save(permission4);
+            permission5 = permissionRepository.save(permission5);
+            permission6 = permissionRepository.save(permission6);
+            permission7 = permissionRepository.save(permission7);
+            permission8 = permissionRepository.save(permission8);
+            permission9 = permissionRepository.save(permission9);
+            permission10 = permissionRepository.save(permission10);
+            permission11 = permissionRepository.save(permission11);
             //角色分为 admin, coder, basicuser1, basicuser2, vip
             //admin: 所有权限 0-11
             //coder: 除了DELETE的所有权限 0,1,3,4,5,7,9,10,11
@@ -155,9 +155,13 @@ public class Application {
             basicuser2List.add(permission7);
             basicuser2.setPermissions(basicuser2List);
             roleRepository.save(admin);
+            Thread.sleep(100);
             roleRepository.save(coder);
+            Thread.sleep(100);
             roleRepository.save(vip);
+            Thread.sleep(100);
             roleRepository.save(basicuser1);
+            Thread.sleep(100);
             roleRepository.save(basicuser2);
         }
         if(!carRepository.findOneByName("Car1").isPresent()){

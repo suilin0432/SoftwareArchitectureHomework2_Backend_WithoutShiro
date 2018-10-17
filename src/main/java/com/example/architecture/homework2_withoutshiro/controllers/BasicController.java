@@ -76,6 +76,7 @@ public class BasicController {
         if(!password.equals(confirm)){
             throw new AuthException(1015, config.getExceptionsMap().get(1015));
         }
+
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -105,12 +106,6 @@ public class BasicController {
         String password = data.password;
         if(!Objects.isNotNull(username, password)){
             throw new AuthException(1011, config.getExceptionsMap().get(1011));
-        }
-        if(!basicService.isRightUsername(username)){
-            throw new AuthException(1012, config.getExceptionsMap().get(1012));
-        }
-        if(!basicService.isRightPassword(password)){
-            throw new AuthException(1014, config.getExceptionsMap().get(1014));
         }
         Optional<User> userFound = userRepository.findOneByUsername(username);
         if(!userFound.isPresent()){
